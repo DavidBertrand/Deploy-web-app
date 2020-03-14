@@ -39,7 +39,7 @@ print("Last Modified Time : ",  )
 #
 # Get the server list.
 #
-with open('servers_test.json') as f:
+with open('deploy_params.json') as f:
   data = json.load(f)
 
 servers = data.get("servers")
@@ -61,7 +61,6 @@ if yes_or_no("Are you sure you want to launch the deployment?"):
 			print ("Trying to connect to %s (%i/30)" % (server, i))
 
 			try:   
-
 				ssh = paramiko.SSHClient() 
 				ssh.load_host_keys(os.path.expanduser(os.path.join("~", ".ssh", "known_hosts")))
 				ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
