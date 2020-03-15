@@ -19,7 +19,9 @@ The `deploy_params.json` allows you to list all servers where the app will be de
 }
 ```
 ### Depedencies
-The code requires the `paramiko library`. Instalation instruction for the library can be found [here](http://www.paramiko.org/installing.html)
+The code uses python 3.8 and the `paramiko library`. Installation instruction for the library can be found [here](http://www.paramiko.org/installing.html)
 
-## Pending Issue
+
+## Pending Issues
 The app details are still not been passed in the JSON parameter file 
+File and parameters validation are not implemented yet
