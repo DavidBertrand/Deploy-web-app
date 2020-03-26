@@ -1,4 +1,9 @@
 
 {   
-    "servers": ["172.21.10.13", "172.21.10.14"]
+    "app_name":"CustomerRestServices",
+    "app_ext":"jar",
+    "servers": ["172.21.10.13", "172.21.10.14"],
+    "localpath":"c:\\git-repo\\customer_rest\\target\\",
+    "remotepath":"/"
+
 }
