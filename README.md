@@ -12,16 +12,27 @@ This python code will automate the tasks required to deploy a java web applicati
 * Restart the application service
 ```
 ### Parameters
-The `deploy_params.json` allows you to list all servers where the app will be deployed
+The `deploy_params.json` allows you to define the application and deploymeent specifics:
 ```
 {   
-"servers": ["172.21.10.13", "172.21.10.14"]
+    "app_name":"CustomerRestServices",
+    "app_ext":"jar",
+    "servers": ["172.21.10.13", "172.21.10.14"],
+    "localpath":"c:\\git-repo\\customer_rest\\target\\",
+    "remotepath":"/",
+    "ssh_key_filename":"some path"
 }
 ```
+* app_name: Name of the application file 
+* app_ext: application file extention
+* servers: list of servers where the app will be deployed
+* localpath: local path where the application to deploy is
+* remotepath: path on servers where the app needs to be deployed
+* ssh_key_filename: path to the ssh key when one is needed for the connection
+
 ### Depedencies
 The code uses python 3.8 and the `paramiko library`. Installation instruction for the library can be found [here](http://www.paramiko.org/installing.html)
 
 
-## Pending Issues
-The app details are still not been passed in the JSON parameter file 
-File and parameters validation are not implemented yet
+### Pending Issues
+when the password is wrong the error handling needs to be looked at

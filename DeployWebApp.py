@@ -21,23 +21,16 @@ def yes_or_no(question):
 
 username="root"
 
-localpath= "c:\\git-repo\\customer_rest\\target\\"
+localpath= ""
 file_name="CustomerRestServices"
 jar_file = file_name+".jar"
 remotepath="/"
 
-#
-# Get file last modification date
-#
+ 
 
-fileStatsObj = os.stat ( localpath+jar_file )
- 
-modificationTime = time.ctime ( fileStatsObj [ stat.ST_MTIME ] )
- 
-print("Last Modified Time : ",  ) 
 
 #
-# Get the server list.
+# Get parameters from JSON file.
 #
 with open('deploy_params.json') as f:
   data = json.load(f)
@@ -50,7 +43,16 @@ app_file = app_name + "."+app_ext
 remotepath=data.get("remotepath")
 ssh_key_filename = data.get("ssh_key_filename")
 
-print ("Application to be deployed: "+ app_file + "("+modificationTime+")")
+#
+# Get file last modification date
+#
+
+fileStatsObj = os.stat ( localpath+jar_file )
+ 
+modificationTime = time.ctime ( fileStatsObj [ stat.ST_MTIME ] )
+
+
+print ("Application to be deployed: "+ app_file + "( Compiled date: "+modificationTime+")")
 print ("Server where the application will be deployed:")
 for serv in servers:
 	print (serv) 
