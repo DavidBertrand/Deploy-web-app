@@ -5,6 +5,7 @@ import json
 import time
 import stat
 
+
 from datetime import datetime 
 from time import sleep
 
@@ -101,7 +102,7 @@ if yes_or_no("Are you sure you want to launch the deployment?"):
 		now = datetime.now()
 		dt_string = now.strftime("%Y%m%d_%H%M%S")
 
-		command='cp '+ remotepath + app_file +' '+remotepath + app_name +'_'+ dt_string +"."+app_ext
+		command='mv ' + remotepath + app_file +' '+remotepath + app_name +'_'+ dt_string +"."+app_ext
 		stdin, stdout, stderr = ssh.exec_command(command)
 		print ("Sent command "+ command)
 		#=== 2) Upload new jar
@@ -111,7 +112,10 @@ if yes_or_no("Are you sure you want to launch the deployment?"):
 		print ("Uploaded  "+ app_file)
 
 		#=== 3)Restart the program
-		stdin, stdout, stderr = ssh.exec_command('systemctl restart customer_rest.service')
+		stdin, stdout, stderr = ssh.exec_command('systemctl stop customer_rest.service')
+		print ("Sent command ""systemctl stop customer_rest.service""")
+		time.sleep(0.33)
+		stdin, stdout, stderr = ssh.exec_command('systemctl start customer_rest.service')
 		print ("Sent command ""systemctl start customer_rest.service""")
 		ssh.close()
 
